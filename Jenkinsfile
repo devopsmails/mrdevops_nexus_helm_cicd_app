@@ -24,5 +24,14 @@ pipeline{
                 }
             }
         }
+
+        // stage ('Docker image build & docker push Nexus repo'){
+
+        //     steps{
+        //         script{
+
+        //         }
+        //     }
+        // }
     }
 }
