@@ -16,7 +16,7 @@ pipeline{
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
-                        sh "mkdir -p /.m2/repository && mvn clean package sonar:sonar"
+                        sh "sudo mkdir -p /.m2/repository && mvn clean package sonar:sonar"
                     }
 
                 }
