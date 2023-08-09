@@ -32,16 +32,16 @@ pipeline{
         stage ('Docker image build & docker push Nexus repo'){
 
             steps{
-                withCredentials([string(credentialsId: 'nexus_cred_pwd', variable: 'nexus_pwd')])
+                
                 script{
+                    withCredentials([string(credentialsId: 'nexus_cred_pwd', variable: 'nexus_pwd')]){
+                        sh '''
+                        docker build -t 34.238.232.93:8083/springapp:${VERSION} . 
 
-                    sh '''
-                    docker build -t 34.238.232.93:8083/springapp:${VERSION} . 
-
-                    docker login -u admin -p  $nexus_pwd 34.238.232.93:8083
-                    docker push 34.238.232.93:8083/springapp:${VERSION}
-                    docker rmi 34.238.232.93:8083/springapp:${VERSION}
-                    '''
+                        docker login -u admin -p  $nexus_pwd 34.238.232.93:8083
+                        docker push 34.238.232.93:8083/springapp:${VERSION}
+                        docker rmi 34.238.232.93:8083/springapp:${VERSION}
+                    }    '''
                 }
             }
         }
