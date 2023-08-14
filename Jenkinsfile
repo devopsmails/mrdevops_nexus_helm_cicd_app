@@ -1,6 +1,8 @@
 pipeline{
 
-    agent any
+    agent {
+	label 'java_agent'
+    }
     environment{
 
         VERSION="${env.BUILD_ID}"
